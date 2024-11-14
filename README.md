@@ -71,6 +71,7 @@ services:
       - /dev/net/tun
     volumes:
       #- ./planet:/var/lib/zerotier-one/planet
+      # docker cp minio-zerotier-1:/var/lib/zerotier-one ./one
       - ./one/:/var/lib/zerotier-one/
     command:
       - 677a4f5bc655fd0a
