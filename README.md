@@ -1,4 +1,55 @@
 # minio
+## DataNode SideCar
+```code
+version: '3'
+
+services:
+  minio:
+    image: minio/minio
+    #restart: always
+    environment:
+      MINIO_ROOT_USER: admin
+      MINIO_ROOT_PASSWORD: 12345678
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost:8000/minio/health/live"]
+      interval: 30s
+      timeout: 20s
+      retries: 3
+
+    volumes:
+      - ./ec/data1:/data1
+      - ./ec/data2:/data2
+
+    command: >
+      server --address "0.0.0.0:8000" --console-address "0.0.0.0:8001"
+      /data{1...2}
+    #http://10.161.236.10{1...3}/data
+
+    cap_add:
+        - NET_ADMIN
+    stdin_open: true
+    tty: true
+    network_mode: host
+
+  zerotier:
+    image: zerotier/zerotier
+    cap_add:
+      - NET_ADMIN
+    devices:
+      - /dev/net/tun
+    volumes:
+      #- ./planet:/var/lib/zerotier-one/planet
+      # docker cp minio-zerotier-1:/var/lib/zerotier-one ./one
+      - ./one/:/var/lib/zerotier-one/
+    command:
+      - 677a4f5bc655fd0a
+    depends_on:
+      - minio
+    network_mode: "service:minio"
+
+```
+
+## nginx LB
 ```code
     upstream minio {
         server minio1:9000;
@@ -35,48 +86,4 @@
             proxy_pass http://minio;
         }
     }
-```
-
-```code
-version: '3'
-
-services:
-  minio:
-    image: minio/minio
-    #restart: always
-    environment:
-      MINIO_ROOT_USER: admin
-      MINIO_ROOT_PASSWORD: 12345678
-    healthcheck:
-      test: ["CMD", "curl", "-f", "http://localhost:8000/minio/health/live"]
-      interval: 30s
-      timeout: 20s
-      retries: 3
-
-    volumes:
-      - ./data:/data
-    command: server --address "0.0.0.0:8000" --console-address "0.0.0.0:8001" /data
-
-    cap_add:
-        - NET_ADMIN
-    stdin_open: true
-    tty: true
-    network_mode: host
-
-  zerotier:
-    image: zerotier/zerotier
-    cap_add:
-      - NET_ADMIN
-    devices:
-      - /dev/net/tun
-    volumes:
-      #- ./planet:/var/lib/zerotier-one/planet
-      # docker cp minio-zerotier-1:/var/lib/zerotier-one ./one
-      - ./one/:/var/lib/zerotier-one/
-    command:
-      - 677a4f5bc655fd0a
-    depends_on:
-      - minio
-    network_mode: "service:minio"
-
 ```
