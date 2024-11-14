@@ -1,5 +1,5 @@
 # minio
-···code
+```code
     upstream minio {
         server minio1:9000;
         server minio2:9000;
@@ -35,4 +35,47 @@
             proxy_pass http://minio;
         }
     }
-···
+```
+
+```code
+version: '3'
+
+services:
+  minio:
+    image: minio/minio
+    #restart: always
+    environment:
+      MINIO_ROOT_USER: admin
+      MINIO_ROOT_PASSWORD: 12345678
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost:8000/minio/health/live"]
+      interval: 30s
+      timeout: 20s
+      retries: 3
+
+    volumes:
+      - ./data:/data
+    command: server --address "0.0.0.0:8000" --console-address "0.0.0.0:8001" /data
+
+    cap_add:
+        - NET_ADMIN
+    stdin_open: true
+    tty: true
+    network_mode: host
+
+  zerotier:
+    image: zerotier/zerotier
+    cap_add:
+      - NET_ADMIN
+    devices:
+      - /dev/net/tun
+    volumes:
+      #- ./planet:/var/lib/zerotier-one/planet
+      - ./one/:/var/lib/zerotier-one/
+    command:
+      - 677a4f5bc655fd0a
+    depends_on:
+      - minio
+    network_mode: "service:minio"
+
+```
