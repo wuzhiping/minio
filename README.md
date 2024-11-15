@@ -11,7 +11,7 @@ services:
       MINIO_ROOT_USER: admin
       MINIO_ROOT_PASSWORD: 12345678
     healthcheck:
-      test: ["CMD", "curl", "-f", "http://localhost:8000/minio/health/live"]
+      test: ["CMD", "curl", "-f", "http://localhost:9000/minio/health/live"]
       interval: 30s
       timeout: 20s
       retries: 3
@@ -21,9 +21,9 @@ services:
       - ./ec/data2:/data2
 
     command: >
-      server --address "0.0.0.0:8000" --console-address "0.0.0.0:8001"
-      /data{1...2}
-    #http://10.161.236.10{1...3}/data
+      server --address "0.0.0.0:9000" --console-address "0.0.0.0:9001"
+      http://10.161.236.101:9000/data{1...2}
+      http://10.161.236.102:9000/data{1...2}
 
     cap_add:
         - NET_ADMIN
