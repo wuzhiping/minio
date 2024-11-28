@@ -1,4 +1,14 @@
 # minio
+
+wget https://dl.min.io/server/minio/release/linux-amd64/minio
+
+sudo chmod +x minio
+
+MINIO_ROOT_USER=admin MINIO_ROOT_PASSWORD=12345678 \
+./minio server --address "0.0.0.0:6000" \
+               --console-address "0.0.0.0:6001" \
+               http://minio-node{1...3}/data{1...2}
+
 ## DataNode SideCar
 ```code
 version: '3'
