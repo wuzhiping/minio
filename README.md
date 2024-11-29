@@ -19,6 +19,7 @@ mc alias set nas/ http://localhost:7000 admin 12345678
 
 mc cp clear.sh nas/abc/
 mc ls nas/abc/
+mc rm nas/abc/clear.sh
 ```
 ## DataNode SideCar
 ```code
