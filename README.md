@@ -17,7 +17,8 @@ wget https://dl.min.io/client/mc/release/linux-amd64/mc
 chmod +x mc
 mc alias set nas/ http://localhost:7000 admin 12345678
 
-mc ls nas
+mc cp clear.sh nas/abc/
+mc ls nas/abc/
 ```
 ## DataNode SideCar
 ```code
