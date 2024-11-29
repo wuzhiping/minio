@@ -11,7 +11,14 @@ MINIO_CI_CD=true MINIO_ROOT_USER=admin MINIO_ROOT_PASSWORD=12345678 \
                --console-address "0.0.0.0:6001" \
                http://minio-node{1...3}/data{1...2}
 ```
+# mc
+```code
+wget https://dl.min.io/client/mc/release/linux-amd64/mc
+chmod +x mc
+mc alias set nas/ http://localhost:7000 admin 12345678
 
+mc ls nas
+```
 ## DataNode SideCar
 ```code
 version: '3'
