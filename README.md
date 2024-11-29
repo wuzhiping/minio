@@ -6,7 +6,7 @@ sudo chmod +x minio
 
 sudo vi /etc/hosts
 
-MINIO_ROOT_USER=admin MINIO_ROOT_PASSWORD=12345678 \
+MINIO_CI_CD=true MINIO_ROOT_USER=admin MINIO_ROOT_PASSWORD=12345678 \
 ./minio server --address "0.0.0.0:6000" \
                --console-address "0.0.0.0:6001" \
                http://minio-node{1...3}/data{1...2}
