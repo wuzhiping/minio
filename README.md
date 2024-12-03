@@ -44,6 +44,11 @@ docker run --rm -it --network=host -v \
        --rc-user uid --rc-pass pwd \
        --rc-web-gui
 ```
+## webapi
+```code
+!curl -X POST 'http://uid:pwd@10.17.1.26:5555/rclone/rc/noop?potato=1&sausage=2'
+!curl -H "Content-Type: application/json" -X POST -d '{"potato":2,"sausage":1}' http://uid:pwd@10.17.1.26:5555/rclone/rc/noop
+```
 
 # mc
 ```code
