@@ -12,6 +12,7 @@ MINIO_CI_CD=true MINIO_ROOT_USER=admin MINIO_ROOT_PASSWORD=12345678 \
                http://minio-node{1...3}/data{1...2}
 ```
 # Rclone
+## https://post.smzdm.com/p/am3wmk8v/
 ## https://rclone.org/downloads/
 ## rclone config
 ### .config/rclone/rclone.conf
