@@ -33,6 +33,17 @@ touch abc/a.txt
 rclone sync ./abc minio:abc
 ```
 
+# Docker rcd 
+```code
+docker run --rm -it --network=host -v \
+       $PWD/abc/rclone.conf:/config/rclone/rclone.conf \
+       rclone/rclone:latest \
+       rcd --rc-baseurl "/rclone/" \
+       --rc-addr=0.0.0.0:5555 \
+       --rc-user uid --rc-pass pwd \
+       --rc-web-gui
+```
+
 # mc
 ```code
 wget https://dl.min.io/client/mc/release/linux-amd64/mc
