@@ -13,7 +13,6 @@ MINIO_CI_CD=true MINIO_ROOT_USER=admin MINIO_ROOT_PASSWORD=12345678 \
 ```
 # Rclone
 ## https://rclone.org/downloads/
-### unzip
 ## rclone config
 ### .config/rclone/rclone.conf
 ```code
@@ -27,6 +26,9 @@ endpoint = http://10.17.1.22:7000
 
 rclone copy .config/rclone/rclone.conf nas:abc
 rclone sync nas:abc ./abc
+
+touch abc/a.txt
+rclone sync ./abc minio:abc
 ```
 
 # mc
