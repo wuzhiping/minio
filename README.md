@@ -15,7 +15,7 @@ MINIO_CI_CD=true MINIO_ROOT_USER=admin MINIO_ROOT_PASSWORD=12345678 \
 ## https://rclone.org/downloads/
 ### unzip
 ## rclone config
-###.config/rclone/rclone.conf
+### .config/rclone/rclone.conf
 ```code
 [nas]
 type = s3
