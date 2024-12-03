@@ -11,6 +11,24 @@ MINIO_CI_CD=true MINIO_ROOT_USER=admin MINIO_ROOT_PASSWORD=12345678 \
                --console-address "0.0.0.0:6001" \
                http://minio-node{1...3}/data{1...2}
 ```
+# Rclone
+## https://rclone.org/downloads/
+### unzip
+## rclone config
+###.config/rclone/rclone.conf
+```code
+[nas]
+type = s3
+provider = Minio
+env_auth = false
+access_key_id = admin
+secret_access_key = 12345678
+endpoint = http://10.17.1.22:7000
+
+rclone copy .config/rclone/rclone.conf nas:abc
+rclone sync nas:abc ./abc
+```
+
 # mc
 ```code
 wget https://dl.min.io/client/mc/release/linux-amd64/mc
