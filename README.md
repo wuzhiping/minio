@@ -42,8 +42,11 @@ docker run --rm -it --network=host -v \
        rcd --rc-baseurl "/rclone/" \
        --rc-addr=0.0.0.0:5555 \
        --rc-user uid --rc-pass pwd \
-       --rc-web-gui
+       --rc-web-gui \
+       --rc-serve
 ```
+http://10.17.1.26:5555/rclone/*
+
 ## webapi
 ```code
 !curl -X POST 'http://uid:pwd@10.17.1.26:5555/rclone/rc/noop?potato=1&sausage=2'
