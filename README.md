@@ -11,6 +11,31 @@ MINIO_CI_CD=true MINIO_ROOT_USER=admin MINIO_ROOT_PASSWORD=12345678 \
                --console-address "0.0.0.0:6001" \
                http://minio-node{1...3}/data{1...2}
 ```
+# syncthing
+```code
+version: '3'
+services:
+  syncthing: #唯一
+    container_name: syncthing-st  #唯一
+    image: syncthing/syncthing:latest
+    hostname: syncthing #optional
+    healthcheck:
+      test: ['CMD','true'] #disable the healthcheck 强制测试通过
+    environment:
+      - STGUIADDRESS=0.0.0.0:8384 #docker只能使用这方式修改GUI端口
+      - PUID=0  #不定义则默认1000用户，可能无法读取其他docker目录
+      - PGID=0
+    volumes:
+      - ./var/syncthing:/var/syncthing
+      - ./abc/:/abc
+    restart: unless-stopped
+    ports:
+      - 8384:8384
+      - 22000:22000/tcp
+      - 22000:22000/udp
+      - 21027:21027/udp
+    #network_mode: "host"    #主机模式.无需预先映射端口
+```
 
 # RCLONE
 ## https://post.smzdm.com/p/am3wmk8v/
