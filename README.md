@@ -46,6 +46,7 @@ docker run --rm -it --network=host -v \
        --rc-serve
 ```
 http://10.17.1.26:5555/rclone/*
+rclone rc --url http://localhost:5555/rclone/ --user uid --pass pwd job/list
 
 ## webapi
 ```code
