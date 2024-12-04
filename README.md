@@ -27,7 +27,7 @@ services:
       - PGID=0
     volumes:
       - ./var/syncthing:/var/syncthing
-      - ./abc/:/abc
+      - nas:/abc
     restart: unless-stopped
     ports:
       - 8384:8384
@@ -35,6 +35,14 @@ services:
       - 22000:22000/udp
       - 21027:21027/udp
     #network_mode: "host"    #主机模式.无需预先映射端口
+volumes:
+  nas:
+    driver: rclone
+    driver_opts:
+      remote: 'minio:nas'
+      allow_other: 'true'
+      vfs_cache_mode: full
+      poll_interval: 0
 ```
 
 # RCLONE
