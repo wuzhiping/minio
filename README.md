@@ -32,6 +32,24 @@ rclone sync nas:abc ./abc
 touch abc/a.txt
 rclone sync ./abc minio:abc
 ```
+# Volume
+## https://valetzx.github.io/p/13d3.html
+```code
+version: '3'
+services:
+  heimdall:
+    image: busybox:1.32
+    command: ping 8.8.8.8
+    volumes: [configdata:/config]
+volumes:
+  configdata:
+    driver: rclone
+    driver_opts:
+      remote: 'minio:conf'
+      allow_other: 'true'
+      vfs_cache_mode: full
+      poll_interval: 0
+```
 
 # Docker rcd 
 ## https://rclone.org/commands/rclone_rcd/
