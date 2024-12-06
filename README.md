@@ -13,6 +13,12 @@ MINIO_CI_CD=true MINIO_ROOT_USER=admin MINIO_ROOT_PASSWORD=12345678 \
                --console-address "0.0.0.0:6001" \
                http://minio-node{1...3}/data{1...2}
 ```
+# autorestic
+## https://autorestic.vercel.app/docker
+```code
+docker run --rm -it cupcakearmy/autorestic /bin/bash
+```
+
 # syncthing
 ```code
 version: '3'
