@@ -15,6 +15,7 @@ MINIO_CI_CD=true MINIO_ROOT_USER=admin MINIO_ROOT_PASSWORD=12345678 \
 ```
 # autorestic
 ## https://autorestic.vercel.app/docker
+![autorestic info](autorestic.png "info")
 ```code
 docker run --rm -it \
        -v /home/user/.config/rclone/rclone.conf:/root/.config/rclone/rclone.conf:ro \
