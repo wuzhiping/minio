@@ -1,0 +1,12 @@
+version: 2
+locations:
+  home:
+    from: /root/data
+    to: nas
+backends:
+  nas:
+    type: s3
+    path: 'http://10.17.1.22:7000/conf'
+    env:
+      AWS_ACCESS_KEY_ID: admin
+      AWS_SECRET_ACCESS_KEY: '12345678'    
