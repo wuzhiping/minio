@@ -18,7 +18,14 @@ MINIO_CI_CD=true MINIO_ROOT_USER=admin MINIO_ROOT_PASSWORD=12345678 \
 ```code
 docker run --rm -it \
        -v /home/user/.config/rclone/rclone.conf:/root/.config/rclone/rclone.conf:ro \
+       -v $PWD/autorestic:/root/.config/autorestic
        cupcakearmy/autorestic /bin/bash
+
+autorestic check
+autorestic backup -a
+autorestic restore -l home \
+                --from nas \
+                --to ./restore
 ```
 
 # syncthing
