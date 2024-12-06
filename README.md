@@ -23,6 +23,7 @@ docker run --rm -it \
 
 autorestic check
 autorestic backup -a
+autorestic exec -av -- snapshots
 autorestic restore -l home \
                 --from nas \
                 --to ./restore
