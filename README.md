@@ -157,8 +157,7 @@ services:
 
     command: >
       server --address "0.0.0.0:9000" --console-address "0.0.0.0:9001"
-      http://10.161.236.101:9000/data{1...2}
-      http://10.161.236.102:9000/data{1...2}
+      http://10.161.236.10{1...2}:9000/data{1...2}
 
     cap_add:
         - NET_ADMIN
